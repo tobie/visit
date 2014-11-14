@@ -1,6 +1,6 @@
 {
   "name": "visit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Visits a URL using phantomjs, loads the page, runs the CJS scripts and collects the results.",
   "main": "index.js",
   "scripts": {
@@ -20,5 +20,19 @@
   },
   "directories": {
     "test": "test"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tobie/visit"
+  },
+  "keywords": [
+    "phantomjs",
+    "html",
+    "browse",
+    "spider"
+  ],
+  "bugs": {
+    "url": "https://github.com/tobie/visit/issues"
+  },
+  "homepage": "https://github.com/tobie/visit"
 }
