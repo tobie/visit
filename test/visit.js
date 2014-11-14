@@ -42,7 +42,7 @@ var server = http.createServer(function (req, res) {
 
 suite("Test visit module", function() {
     test("visit", function(done) {
-        visit("http:127.0.0.1:3000/foo", "../fixtures/script.js", function(err, results) {
+        visit("http:127.0.0.1:3000/foo", "./fixtures/script.js", function(err, results) {
             assert(!err, err);
             assert.equal(typeof results, "object");
             assert.equal(results.title, "foo");
@@ -51,7 +51,7 @@ suite("Test visit module", function() {
     });
     
     test("visitPages", function(done) {
-        visit.visitPages(["http:127.0.0.1:3000/foo", "http:127.0.0.1:3000/bar"], "../fixtures/script.js", function(err, results) {
+        visit.visitPages(["http:127.0.0.1:3000/foo", "http:127.0.0.1:3000/bar"], "./fixtures/script.js", function(err, results) {
             assert(!err, err);
             assert(Array.isArray(results));
             assert.equal(results[0].title, "foo");
@@ -62,7 +62,7 @@ suite("Test visit module", function() {
     
     test("visitPages errors when one of the urls breaks", function(done) {
         var urls = ["http:127.0.0.1:3000/foo", "http:127.0.0.1:3000/bar", "http:127.0.0.1:3000/broken"];
-        visit.visitPages(urls, "../fixtures/script.js", function(err, results) {
+        visit.visitPages(urls, "./fixtures/script.js", function(err, results) {
             assert(err);
             assert(!results);
             done();
@@ -70,7 +70,7 @@ suite("Test visit module", function() {
     });
     
     test("timeout of 500 ms stops the visit after half a second.", function(done) {
-        visit("http:127.0.0.1:3000/slow", "../fixtures/script.js", { timeout: 500 }, function(err, results) {
+        visit("http:127.0.0.1:3000/slow", "./fixtures/script.js", { timeout: 500 }, function(err, results) {
             assert(err);
             assert(!results);
             done();
@@ -79,7 +79,7 @@ suite("Test visit module", function() {
     
     test("tries multiple attempts before giving up.", function(done) {
         attempts = 0;
-        visit("http:127.0.0.1:3000/broken-at-first", "../fixtures/script.js", { attempts: 3 }, function(err, results) {
+        visit("http:127.0.0.1:3000/broken-at-first", "./fixtures/script.js", { attempts: 3 }, function(err, results) {
             assert(!err, err);
             assert.equal(typeof results, "object");
             assert.equal(results.title, "fixed at last");

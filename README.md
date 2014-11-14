@@ -26,6 +26,7 @@ second argument.
 *   `attempts` (`int`): number of attempts at visiting the page before reporting
     an error (note this uses an exponential backoff). Defaults to `1`.
 *  `delay` (`int`): time in `ms` before the second attempt, default to `0 ms`.
+*  `confing` (`str`): Path to the [PhantomJS JSON config file](http://phantomjs.org/api/command-line.html). Optional.
 
 ### `visitPages(urls, script[, options], callback)`
 

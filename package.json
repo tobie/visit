@@ -1,10 +1,10 @@
 {
   "name": "visit",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Visits a URL using phantomjs, loads the page, runs the CJS scripts and collects the results.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -u tdd --timeout 10000 ./test/*.js"
+    "test": "mocha -u tdd --timeout 50000 ./test/*.js"
   },
   "author": "Tobie Langel <tobie.langel@gmail.com>",
   "license": "Apache License, Version 2.0",
