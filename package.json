@@ -1,0 +1,24 @@
+{
+  "name": "visit",
+  "version": "0.1.0",
+  "description": "Visits a URL using phantomjs, loads the page, runs the CJS scripts and collects the results.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -u tdd --timeout 10000 ./test/*.js"
+  },
+  "author": "Tobie Langel <tobie.langel@gmail.com>",
+  "license": "Apache License, Version 2.0",
+  "dependencies": {
+    "backoff": "2.4.0",
+    "esprima": "1.2.2",
+    "modulr": "0.14.0",
+    "phantomjs": "1.9.10",
+    "uuid": "2.0.1"
+  },
+  "devDependencies": {
+    "mocha": "1.21.4"
+  },
+  "directories": {
+    "test": "test"
+  }
+}
