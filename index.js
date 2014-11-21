@@ -35,7 +35,7 @@ function visitPages(urls, script, options, callback) {
         }
     }
     
-    visit(urls.shift(), script, next);
+    visit(urls.shift(), script, options, next);
 };
 
 module.exports = visit;
