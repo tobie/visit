@@ -24,6 +24,8 @@ var server = http.createServer(function (req, res) {
         res.end(html("bar"));
     } else if (req.url == "/foo") {
         res.end(html("foo"));
+    } else if (req.url == "/toc") {
+        res.end(html("ToC", "<ol class=\"toc\"></ol><ol></ol>"));
     } else if (req.url == "/broken") {
         req.socket.destroy();
     } else if (req.url == "/broken-at-first") {
@@ -83,6 +85,15 @@ suite("Test visit module", function() {
             assert(!err, err);
             assert.equal(typeof results, "object");
             assert.equal(results.title, "fixed at last");
+            done();
+        });
+    });
+    
+    test("supports npm packages.", function(done) {
+        attempts = 0;
+        visit("http:127.0.0.1:3000/toc", "./fixtures/require-pkg.js", function(err, results) {
+            assert(!err, err);
+            assert.equal(results.tocSize, 2);
             done();
         });
     });

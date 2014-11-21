@@ -10,12 +10,13 @@
   "license": "Apache License, Version 2.0",
   "dependencies": {
     "backoff": "2.4.0",
+    "browserify": "6.3.2",
     "esprima": "1.2.2",
-    "modulr": "0.14.0",
     "phantomjs": "1.9.10",
     "uuid": "2.0.1"
   },
   "devDependencies": {
+    "spec-toc-obj": "0.3.0",
     "mocha": "1.21.4"
   },
   "directories": {
