@@ -90,10 +90,23 @@ suite("Test visit module", function() {
     });
     
     test("supports npm packages.", function(done) {
-        attempts = 0;
         visit("http:127.0.0.1:3000/toc", "./fixtures/require-pkg.js", function(err, results) {
             assert(!err, err);
             assert.equal(results.tocSize, 2);
+            done();
+        });
+    });
+    
+    test("warns about empty script pages upfront.", function(done) {
+        visit("http:127.0.0.1:3000/bar", "./fixtures/empty.js", function(err, results) {
+            assert(err, err);
+            done();
+        });
+    });
+    
+    test("warns about missing script pages upfront.", function(done) {
+        visit("http:127.0.0.1:3000/bar", "./fixtures/doess-not-exist.js", function(err, results) {
+            assert(err, err);
             done();
         });
     });

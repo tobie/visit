@@ -13,6 +13,7 @@
     "browserify": "6.3.2",
     "esprima": "1.2.2",
     "phantomjs": "1.9.10",
+    "through2": "^0.6.3",
     "uuid": "2.0.1"
   },
   "devDependencies": {
