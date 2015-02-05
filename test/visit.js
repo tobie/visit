@@ -17,32 +17,33 @@ function html(title, body) {
     return output;
 }
 
-var attempts = 0;
-var server = http.createServer(function (req, res) {
-    res.writeHead(200, {"Content-Type": "text/html"});
-    if (req.url == "/bar") {
-        res.end(html("bar"));
-    } else if (req.url == "/foo") {
-        res.end(html("foo"));
-    } else if (req.url == "/toc") {
-        res.end(html("ToC", "<ol class=\"toc\"></ol><ol></ol>"));
-    } else if (req.url == "/broken") {
-        req.socket.destroy();
-    } else if (req.url == "/broken-at-first") {
-        if (attempts < 4) {
-            req.socket.destroy();
-            attempts++;
-        } else {
-            res.end(html("fixed at last"));
-        }
-    } else if (req.url == "/slow") {
-        setTimeout(function() { res.end(html("slow")); }, 2000)
-    } else {
-        res.end(html("default"));
-    }
-}).listen(3000, "127.0.0.1");
-
 suite("Test visit module", function() {
+
+    var attempts = 0;
+    var server = http.createServer(function (req, res) {
+        res.writeHead(200, {"Content-Type": "text/html"});
+        if (req.url == "/bar") {
+            res.end(html("bar"));
+        } else if (req.url == "/foo") {
+            res.end(html("foo"));
+        } else if (req.url == "/toc") {
+            res.end(html("ToC", "<ol class=\"toc\"></ol><ol></ol>"));
+        } else if (req.url == "/broken") {
+            req.socket.destroy();
+        } else if (req.url == "/broken-at-first") {
+            if (attempts < 4) {
+                req.socket.destroy();
+                attempts++;
+            } else {
+                res.end(html("fixed at last"));
+            }
+        } else if (req.url == "/slow") {
+            setTimeout(function() { res.end(html("slow")); }, 2000)
+        } else {
+            res.end(html("default"));
+        }
+    }).listen(3000, "127.0.0.1");
+    
     test("visit", function(done) {
         visit("http:127.0.0.1:3000/foo", "./fixtures/script.js", function(err, results) {
             assert(!err, err);
@@ -110,4 +111,9 @@ suite("Test visit module", function() {
             done();
         });
     });
+    suiteTeardown(function() {
+        server.close()
+    })
 });
+
+
